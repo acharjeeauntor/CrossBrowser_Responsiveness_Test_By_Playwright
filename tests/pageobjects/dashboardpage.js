@@ -27,7 +27,8 @@ class DashboardPage {
     }
 
     async getCartLabelLocator(){
-        await this.page.locator(this.cartLabelSelector).waitFor({timeout:15000})
+       // await this.page.locator(this.cartLabelSelector).waitFor({timeout:15000})
+       await this.page.waitForTimeout(5000)
         return await this.page.textContent(this.cartLabelSelector)
     }
 
