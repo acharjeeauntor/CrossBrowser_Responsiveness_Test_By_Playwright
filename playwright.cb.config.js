@@ -7,7 +7,7 @@ const testConfig = require("./testconfig")
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests',
+  testDir: './tests/specs/cross',
   workers:3,
   retries:1,
   /* Maximum time one test can run for. */

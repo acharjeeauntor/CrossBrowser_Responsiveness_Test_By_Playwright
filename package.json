@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npx playwright test --config=playwright.cb.config.js"
+    "crossBrowserTest":"npx playwright test --config=playwright.cb.config.js",
+    "responsivenessTest":"npx playwright test --config=playwright.responsive.config.js"
   },
   "keywords": [],
   "author": "",

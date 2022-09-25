@@ -3,6 +3,8 @@ class LoginPage{
     emailInputSelector=`#userEmail`
     passwordInputSelector=`#userPassword`
     loginBtnSelector=`#login`
+    emailAddressSelector=`.top-tab a`
+    registerBtnSelector=`[routerlink*="/auth/register"]`
 
     constructor(page){
         this.page = page
@@ -21,6 +23,12 @@ class LoginPage{
     }
     async clickLoginButton(){
         await this.page.click(this.loginBtnSelector)
+    }
+    async emailAddressLocator(){
+        return await this.page.locator(this.emailAddressSelector).nth(0)
+    }
+    async clickRegisterButton(){
+        await this.page.click(this.registerBtnSelector)
     }
 
 

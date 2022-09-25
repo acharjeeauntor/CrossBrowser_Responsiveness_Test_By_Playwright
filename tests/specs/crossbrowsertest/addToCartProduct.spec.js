@@ -1,9 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const LoginPage = require("../pageobjects/loginpage")
-const DashboardPage = require("../pageobjects/dashboardpage")
-const loginData = require("../testdata/logindata.json")
-const productData = require("../testdata/productdata.json")
+const LoginPage = require("../../pageobjects/loginpage")
+const DashboardPage = require("../../pageobjects/dashboardpage")
+const loginData = require("../../testdata/logindata.json")
+const productData = require("../../testdata/productdata.json")
 
 let loginPage,dashboardPage
 
