@@ -5,6 +5,8 @@ class LoginPage{
     loginBtnSelector=`#login`
     emailAddressSelector=`.top-tab a`
     registerBtnSelector=`[routerlink*="/auth/register"]`
+    forgetPasswordBtnSelector=`[href*="/client/auth/password-new"]`
+    toastMsgSelector=`#toast-container`
 
     constructor(page){
         this.page = page
@@ -29,6 +31,14 @@ class LoginPage{
     }
     async clickRegisterButton(){
         await this.page.click(this.registerBtnSelector)
+    }
+    async clickForgetPasswordButton(){
+        await this.page.click(this.forgetPasswordBtnSelector)
+    }
+    async getToastMsgLocator(){
+        const locator = await this.page.locator(this.toastMsgSelector)
+        await locator.waitFor('visible');
+        return locator
     }
 
 
