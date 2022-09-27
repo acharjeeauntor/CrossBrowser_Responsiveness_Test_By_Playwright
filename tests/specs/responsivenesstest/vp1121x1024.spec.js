@@ -47,5 +47,18 @@ test.describe('Responsiveness test for ViewPort Size:( 1121 x 1024 )',async()=>{
   });
 
 
+  
+  test.only('For large screen four tab will be visible properly', async ({ loginPage,dashboardPage }) => {
+    await loginPage.accessLoginPage("/client")
+    await loginPage.enterEmail("example1@gmail.com")
+    await loginPage.enterPassword("Aa@18")
+    await loginPage.clickLoginButton()
+    await loginPage.page.waitForNavigation()
+    var navTabList = await dashboardPage.getNavTabList()
+    expect(navTabList,'Navbar Tabs are not match').toEqual(['HOME', 'ORDERS', 'Cart', 'Sign Out' ])
+    expect(await navTabList.length,'Navbar Tabs count is not match').toBe(4)
+    
+  });
+
 })
 

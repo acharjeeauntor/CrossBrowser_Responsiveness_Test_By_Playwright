@@ -5,6 +5,7 @@ class DashboardPage {
     addToCartBtnSelector=`button:has-text("Add To Cart")`
     cartLabelSelector=`button label`
     toastMessageSelector=`#toast-container`
+    navBtnSelector=`nav ul li button`
 
 
 
@@ -34,6 +35,18 @@ class DashboardPage {
 
     async getToastMessageLocator(){
         return await this.page.locator(this.toastMessageSelector)
+    }
+
+    async getNavTabList(){
+        var tabNameList=[]
+        let tabs = await this.page.locator(this.navBtnSelector)
+        let totalTab = await tabs.count()
+        for (var i = 0; i < totalTab; i++) {
+            let tab = await tabs.nth(i).textContent()
+            tabNameList.push(tab.trim())
+        }
+
+        return tabNameList
     }
 
 }
