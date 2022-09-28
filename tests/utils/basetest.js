@@ -3,7 +3,7 @@ const LoginPage = require("../pageobjects/loginpage")
 const ForgetPassPage = require("../pageobjects/forgetpasswordpage")
 const RegisterPage =require("../pageobjects/registerpage")
 const DashboardPage =require("../pageobjects/dashboardpage")
-
+const MyCartPage =require("../pageobjects/mycartpage")
 
 
 const test = base.test.extend({
@@ -18,6 +18,9 @@ const test = base.test.extend({
     },
     dashboardPage:async({page},use)=>{
         await use(new DashboardPage(page))
+    },
+    mycartPage:async({page},use)=>{
+        await use(new MyCartPage(page))
     }
 
 })

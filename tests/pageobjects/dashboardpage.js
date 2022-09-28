@@ -6,6 +6,8 @@ class DashboardPage {
     cartLabelSelector=`button label`
     toastMessageSelector=`#toast-container`
     navBtnSelector=`nav ul li button`
+    menuBtnSelector=`.fas`
+    cartBtnSelector=`[routerlink='/dashboard/cart']`
 
 
 
@@ -29,12 +31,23 @@ class DashboardPage {
 
     async getCartLabelLocator(){
        // await this.page.locator(this.cartLabelSelector).waitFor({timeout:15000})
-       await this.page.waitForTimeout(5000)
+       await this.page.waitForTimeout(4000)
         return await this.page.textContent(this.cartLabelSelector)
     }
 
     async getToastMessageLocator(){
         return await this.page.locator(this.toastMessageSelector)
+    }
+
+    async getMenuBtnLocator(){
+        return await this.page.locator(this.menuBtnSelector).nth(1)
+    }
+
+    async clickMenuBtn(){
+        await this.page.locator(this.menuBtnSelector).nth(1).click()
+    }
+    async clickCartBtn(){
+        await this.page.locator(this.cartBtnSelector).click()
     }
 
     async getNavTabList(){

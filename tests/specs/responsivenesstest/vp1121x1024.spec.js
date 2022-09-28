@@ -1,6 +1,7 @@
 // @ts-check
 const test= require("../../utils/basetest")
 const { expect } = require("@playwright/test") 
+const productData = require("../../testdata/productdata.json")
 
 test.describe('Responsiveness test for ViewPort Size:( 1121 x 1024 )',async()=>{
     test.use({ viewport: { width: 1121, height: 1024 } });
@@ -48,7 +49,7 @@ test.describe('Responsiveness test for ViewPort Size:( 1121 x 1024 )',async()=>{
 
 
   
-  test.only('For large screen four tab will be visible properly', async ({ loginPage,dashboardPage }) => {
+  test('For large screen four tab will be visible properly', async ({ loginPage,dashboardPage }) => {
     await loginPage.accessLoginPage("/client")
     await loginPage.enterEmail("example1@gmail.com")
     await loginPage.enterPassword("Aa@18")
@@ -57,8 +58,22 @@ test.describe('Responsiveness test for ViewPort Size:( 1121 x 1024 )',async()=>{
     var navTabList = await dashboardPage.getNavTabList()
     expect(navTabList,'Navbar Tabs are not match').toEqual(['HOME', 'ORDERS', 'Cart', 'Sign Out' ])
     expect(await navTabList.length,'Navbar Tabs count is not match').toBe(4)
-    
+    expect(await dashboardPage.getMenuBtnLocator()).toBeHidden()
   });
+
+
+  test.only('Add to cart any product and verify its showing in cart label',async({loginPage,dashboardPage,mycartPage})=>{
+    await loginPage.accessLoginPage("/client")
+    await loginPage.enterEmail("example1@gmail.com")
+    await loginPage.enterPassword("Aa@18")
+    await loginPage.clickLoginButton()
+    await dashboardPage.page.waitForTimeout(5000)
+    await dashboardPage.clickAddToCartProductButton(productData.productName)
+    expect(await dashboardPage.getCartLabelLocator()).toBe("1")
+    await dashboardPage.clickCartBtn()
+    expect(await mycartPage.getAddedProductLocator()).toHaveText(productData.productName)
+
+  })
 
 })
 
