@@ -9,12 +9,12 @@ const Common = require("../../utils/common")
 let common,token
 common = new Common()
 
-test.describe('Responsiveness test for ViewPort Size:( 360 x 640 )',async()=>{
-    test.use({ viewport: { width: 360, height: 640 } });
+test.describe('Responsiveness test for ViewPort Size:( 360 x 800 )',async()=>{
+    test.use({ viewport: { width: 360, height: 800 } });
     test.beforeAll(async () => {
       token = await common.getLoginToken(loginData.ValidLoginData.Email, loginData.ValidLoginData.Password)
     })
-    test('Verify for ViewPort Size:( 360 x 640 ) the mail will be hide from the page', async ({ loginPage }) => {
+    test('Verify for ViewPort Size:( 360 x 800 ) the mail will be hide from the page', async ({ loginPage }) => {
       await loginPage.accessLoginPage("/client")
       expect(await loginPage.emailAddressLocator(),'Email Address is showing in the top header').toBeHidden()
     });
@@ -53,7 +53,7 @@ test.describe('Responsiveness test for ViewPort Size:( 360 x 640 )',async()=>{
     });
 
 
-    test('Verify for ViewPort Size:( 360 x 640 ) a menu icon will be visible instead of four options,  four options will be shown inside the menu icon', async ({ loginPage,dashboardPage }) => {
+    test('Verify for ViewPort Size:( 360 x 800 ) a menu icon will be visible instead of four options,  four options will be shown inside the menu icon', async ({ loginPage,dashboardPage }) => {
       common.setTokenInLocalStroage(loginPage.page, token)
       await loginPage.accessLoginPage("/client")
       expect(await dashboardPage.getMenuBtnLocator()).toBeVisible()

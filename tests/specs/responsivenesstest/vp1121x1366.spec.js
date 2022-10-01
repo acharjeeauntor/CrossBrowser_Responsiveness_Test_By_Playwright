@@ -1,26 +1,27 @@
 // @ts-check
 const test= require("../../utils/basetest")
-const { expect } = require("@playwright/test")
+const { expect } = require("@playwright/test") 
 const productData = require("../../testdata/productdata.json")
 const loginData = require("../../testdata/logindata.json")
 const dashboardData=require("../../testdata/dashboarddata.json")
 const Common = require("../../utils/common")
 
 let common,token
+
 common = new Common()
 
-
-
-test.describe('Responsiveness test for ViewPort Size:( 800 x 1280 )',async()=>{
-    test.use({ viewport: { width: 800, height: 1280 } });
+test.describe('Responsiveness test for ViewPort Size:( 1121 x 1366 )',async()=>{
+    test.use({ viewport: { width: 1121, height: 1366 } });
     test.beforeAll(async () => {
       token = await common.getLoginToken(loginData.ValidLoginData.Email, loginData.ValidLoginData.Password)
     })
-  test('Verify for ViewPort Size:( 800 x 1280 ) the mail will be hide from the page', async ({ loginPage }) => {
+  test('Verify for ViewPort Size:( 1121 x 1366 ) the mail address will be visible', async ({loginPage,registerPage }) => {
     await loginPage.accessLoginPage("/client")
-    expect(await loginPage.emailAddressLocator(),'Email Address is showing in the top header').toBeHidden()
+    expect(await loginPage.emailAddressLocator(),'Email Address is not showing in the top header').toBeVisible()
+    await loginPage.clickRegisterButton()
+    expect(await registerPage.getRegisterBtnLocator()).toHaveValue("Register")
+    expect(await registerPage.getRegisterBtnLocator(),'Register button is not showing').toBeVisible()
   });
-
 
 
   test('Verify Register button is working properly for all screen size', async ({ loginPage,registerPage }) => {
@@ -43,7 +44,6 @@ test.describe('Responsiveness test for ViewPort Size:( 800 x 1280 )',async()=>{
     await loginPage.enterPassword(loginData.InvalidLoginData.Password)
     await loginPage.clickLoginButton()
     expect(await loginPage.getToastMsgLocator()).toHaveText("Incorrect email or password.")
-
   });
 
   test('Verify user can login to the app using valid credential for all screen size', async ({ loginPage }) => {
@@ -53,11 +53,11 @@ test.describe('Responsiveness test for ViewPort Size:( 800 x 1280 )',async()=>{
     await loginPage.clickLoginButton()
     await loginPage.page.waitForNavigation()
     expect(await loginPage.getToastMsgLocator()).toHaveText("Login Successfully")
-    
   });
 
 
-  test('Verify for ViewPort Size:( 800 x 1280 ) four tab will be visible properly', async ({ loginPage,dashboardPage }) => {
+  
+  test('Verify for ViewPort Size:( 1121 x 1366 ) four tab will be visible properly', async ({ loginPage,dashboardPage }) => {
     common.setTokenInLocalStroage(loginPage.page, token)
     await loginPage.accessLoginPage("/client")
     var navTabList = await dashboardPage.getNavTabList()
@@ -75,7 +75,6 @@ test.describe('Responsiveness test for ViewPort Size:( 800 x 1280 )',async()=>{
     await dashboardPage.clickCartBtn()
     expect(await mycartPage.getAddedProductLocator()).toHaveText(productData.productName)
   })
-
 
 })
 

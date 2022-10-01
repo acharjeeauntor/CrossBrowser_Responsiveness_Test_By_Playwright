@@ -2,5 +2,9 @@
     "ValidLoginData": {
         "Email": "example1@gmail.com",
         "Password": "Aa@18"
+      },
+      "InvalidLoginData": {
+        "Email": "example11234@gmail.com",
+        "Password": "Aa@18sdsd"
       }
 }
