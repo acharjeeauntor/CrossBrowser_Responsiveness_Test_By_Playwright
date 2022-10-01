@@ -7,8 +7,8 @@ const testConfig = require("./testconfig")
  */
 const config = {
   testDir: './tests/specs/responsivenesstest',
-  //testMatch:'vp1121x1024.spec.js',
-  testMatch:'vp360x640.spec.js',
+  testMatch:'vp1121x1024.spec.js',
+  //testMatch:'vp360x640.spec.js',
   workers:1,
   retries:1,
   /* Maximum time one test can run for. */
