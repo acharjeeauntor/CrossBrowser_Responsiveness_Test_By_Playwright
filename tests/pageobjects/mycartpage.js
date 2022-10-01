@@ -6,7 +6,7 @@ class MyCartPage{
     }
 
     async getAddedProductLocator(){
-        await this.page.locator(this.addToCartProductSelector).waitFor({state:'attached',timeout:5000})
+        await this.page.locator(this.addToCartProductSelector).waitFor({state:'visible',timeout:10000})
         return await this.page.locator(this.addToCartProductSelector)
     }
 }

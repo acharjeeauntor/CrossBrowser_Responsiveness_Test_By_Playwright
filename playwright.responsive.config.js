@@ -7,16 +7,16 @@ const testConfig = require("./testconfig")
  */
 const config = {
   testDir: './tests/specs/responsivenesstest',
-  testMatch:'vp1024x1366.spec.js',
-  //testMatch:'vp360x800.spec.js',
-  workers:1,
+  testMatch:['vp360x640.spec.js','vp360x740.spec.js','vp360x800.spec.js','vp1121x1366.spec.js','vp412x732.spec.js','vp412x823.spec.js','vp412x915.spec.js','vp768x1024.spec.js','vp800x1280.spec.js','vp1024x1366.spec.js'],
+  //testMatch:'vp1024x1366.spec.js',
+  workers:3,
   retries:1,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
     timeout: 10000
   },
-  reporter: 'html',
+  reporter: [['list'],['allure-playwright']],
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',

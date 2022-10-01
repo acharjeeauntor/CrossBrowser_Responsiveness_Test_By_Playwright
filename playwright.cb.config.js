@@ -7,15 +7,15 @@ const testConfig = require("./testconfig")
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
 const config = {
-  testDir: './tests/specs/cross',
-  workers:3,
+  testDir: './tests/specs/crossbrowsertest',
+  workers:2,
   retries:1,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
     timeout: 10000
   },
-  reporter: 'html',
+  reporter: [['list'],['allure-playwright']],
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',
@@ -27,7 +27,7 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chrome',
+      name: 'Desktop Chrome Browser',
       use: {
         ...devices['Desktop Chrome'],
         baseURL:testConfig.url,
@@ -35,7 +35,7 @@ const config = {
       },
     },
     {
-      name: 'firefox',
+      name: 'Desktop Firefox Browser',
       use: {
         ...devices['Desktop Firefox'],
         baseURL:testConfig.url,
@@ -43,7 +43,7 @@ const config = {
       },
     },
     {
-      name: 'webkit',
+      name: 'Desktop Safari Browser',
       use: {
         ...devices['Desktop Safari'],
         baseURL:testConfig.url,
@@ -51,7 +51,7 @@ const config = {
       },
     },
     {
-      name: 'edge',
+      name: 'Desktop Edge Browser',
       use: {
         ...devices['Desktop Edge'],
         baseURL:testConfig.url,
@@ -59,7 +59,7 @@ const config = {
       },
     },
     {
-      name: 'Mobile Chrome',
+      name: 'Mobile Chrome Browser',
       use: {
         ...devices['Pixel 5'],
         baseURL:testConfig.url,
@@ -67,7 +67,7 @@ const config = {
       },
     },
     {
-      name: 'Mobile Safari',
+      name: 'Mobile Safari Browser',
       use: {
         ...devices['iPhone 13 Pro'],
         baseURL:testConfig.url,

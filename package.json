@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "crossBrowserTest":"npx playwright test --config=playwright.cb.config.js",
-    "responsivenessTest":"npx playwright test --config=playwright.responsive.config.js"
+    "clearAllure": "if [ -d allure-results ]; then rm -Rf allure-results; fi && if [ -d allure-report ]; then rm -Rf allure-report; fi",
+    "crossBrowserTest": "npm run clearAllure && npx playwright test --config=playwright.cb.config.js",
+    "responsivenessTest": "npm run clearAllure && npx playwright test --config=playwright.responsive.config.js",
+    "allureReport": "npx allure generate ./allure-results --clean && npx allure open ./allure-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.25.2"
+  },
+  "dependencies": {
+    "allure-playwright": "^2.0.0-beta.19"
   }
 }
