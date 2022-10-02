@@ -10,6 +10,7 @@ let common,token
 common = new Common()
 
 test.describe('Responsiveness test for ViewPort Size:( 360 x 640 )',async()=>{
+  
     test.use({ viewport: { width: 360, height: 640 } });
     test.beforeAll(async () => {
       token = await common.getLoginToken(loginData.ValidLoginData.Email, loginData.ValidLoginData.Password)

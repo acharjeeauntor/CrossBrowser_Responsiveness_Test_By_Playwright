@@ -10,7 +10,6 @@ let common,token
 common = new Common()
 
 
-
 test.describe('Responsiveness test for ViewPort Size:( 800 x 1280 )',async()=>{
     test.use({ viewport: { width: 800, height: 1280 } });
     test.beforeAll(async () => {

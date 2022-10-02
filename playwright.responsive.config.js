@@ -7,16 +7,15 @@ const testConfig = require("./testconfig")
  */
 const config = {
   testDir: './tests/specs/responsivenesstest',
-  testMatch:['vp360x640.spec.js','vp360x740.spec.js','vp360x800.spec.js','vp1121x1366.spec.js','vp412x732.spec.js','vp412x823.spec.js','vp412x915.spec.js','vp768x1024.spec.js','vp800x1280.spec.js','vp1024x1366.spec.js'],
   //testMatch:'vp1024x1366.spec.js',
-  workers:3,
+  workers:2,
   retries:1,
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
     timeout: 10000
   },
-  reporter: [['list'],['allure-playwright']],
+  reporter: [['list'],['html'],['allure-playwright']],
   use: {
     actionTimeout: 0,
     trace: 'retain-on-failure',
@@ -28,7 +27,7 @@ const config = {
   /* Configure projects for major viewport size */
   projects: [
       {
-        name:"Responsiveness Test",
+        name:"Responsiveness Test on Chromium Browser",
         use: {
           browserName: `chromium`,
           baseURL:testConfig.url,
@@ -42,6 +41,21 @@ const config = {
           }
         }
     },
+  //   {
+  //     name:"Responsiveness Test on Firefox Browser",
+  //     use: {
+  //       browserName: `firefox`,
+  //       baseURL:testConfig.url,
+  //       headless: !true,
+  //       ignoreHTTPSErrors: true,
+  //       screenshot: `only-on-failure`,
+  //       video: `retain-on-failure`,
+  //       trace: `retain-on-failure`,
+  //       launchOptions: {
+  //         slowMo: 0
+  //       }
+  //     }
+  // },
     
   ],
 

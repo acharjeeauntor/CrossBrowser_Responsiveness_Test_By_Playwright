@@ -71,6 +71,7 @@ test.describe('Responsiveness test for ViewPort Size:( 360 x 800 )',async()=>{
       await dashboardPage.clickAddToCartProductButton(productData.productName)
       await dashboardPage.clickMenuBtn()
       expect(await dashboardPage.getCartLabelLocator()).toBe("1")
+      //await dashboardPage.page.waitForTimeout(5000)
       await dashboardPage.clickCartBtn()
       expect(await mycartPage.getAddedProductLocator()).toHaveText(productData.productName)
   
